@@ -127,3 +127,26 @@ class Addproductview(View):
             form_instance.save()
             return redirect('shop:categories')
         return render(request,'addproduct.html',{'form':form_instance})
+
+# from django.db.models import Q
+# class Search(View):
+#     def get(self,request):
+#         return render(request,'search.html')
+#     def post(self,request):
+#         data=request.POST['s']
+#         p=Product.objects.filter(Q(category__name__icontains=data)|Q(name__icontains=data))
+#         return render(request,'search.html',{'search':p})
+
+from django.db.models import Q
+class Search(View):
+    def get(self,request):
+        return render(request,'search.html')
+    def post(self,request):
+        data = request.POST['s']
+        p = Product.objects.filter(Q(name__icontains=data)|Q(category__name__icontains=data))
+        if p:
+            return render(request, 'search.html', {'pro': p})
+        else:
+            messages.error(request, 'No Such Products')
+            return render(request, 'search.html')
+

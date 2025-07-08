@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+{% block content%}
+ <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Order Summary</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">Order Summary</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<h2 class="text-center">Name of The Customer:{{user.username}} </h2>
+{% for i in orders %}
+    {% for j in i.items.all  %}
+<div class="card mb-3 mx-auto mt-5" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{j.product.image.url}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title">{{j.product.name}}</h3>
+        <h4 class="card-text">₹{{j.product.price}}</h4>
+          <h4 class="card-text">Total Amount:<small class="text-danger">₹{{i.amount}}</small></h4>
+        <p class="card-text">No.of Items:<small class="text-muted"> {{j.quantity}}</small></p>
+           <p class="card-text">Order Id:<small class="text-muted"> {{i.order_id}}</small></p>
+           <p class="card-text">Ordered On:<small class="text-success"> {{i.ordered_date}}</small></p>
+           <p class="card-text">Delivery Status:<small class="text-danger"> {{i.delivery_status}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+{% endfor %}
+{% endblock %}

@@ -24,7 +24,8 @@ urlpatterns = [
      path('minus/<int:i>/', views.Minusview.as_view(), name='minus'),
     path('remove/<int:i>/', views.Removeview.as_view(), name='remove'),
     path('orderform',views.OrderFormView.as_view(),name='orderform'),
-
+    path('success/<i>',views.SuccessView.as_view(),name='success'),
+    path('your_order', views.Your_Orders.as_view(), name='your_order'),
 ]
 from django.conf.urls.static import static
 from django.conf import settings
