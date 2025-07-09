@@ -95,9 +95,9 @@ class Signin(View):
                 form_instance = LoginForm()
                 return render(request, 'signin.html', {'form': form_instance})
 
-    def get(self, request):
-        form_instance = LoginForm()
-        return render(request, 'signin.html', {'form': form_instance})
+    def get(self,request):
+        form_instance=LoginForm()
+        return render(request,'signin.html',{'form':form_instance})
 
 
 class Signout(View):
@@ -128,14 +128,6 @@ class Addproductview(View):
             return redirect('shop:categories')
         return render(request,'addproduct.html',{'form':form_instance})
 
-# from django.db.models import Q
-# class Search(View):
-#     def get(self,request):
-#         return render(request,'search.html')
-#     def post(self,request):
-#         data=request.POST['s']
-#         p=Product.objects.filter(Q(category__name__icontains=data)|Q(name__icontains=data))
-#         return render(request,'search.html',{'search':p})
 
 from django.db.models import Q
 class Search(View):
